@@ -4,19 +4,38 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.appneko.petsho.CategoriesModel
+import com.appneko.petsho.ProductsModel
 import com.appneko.petsho.UsersModel
 
 class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", null, 1){
     override fun onCreate(db: SQLiteDatabase?) {
-        val createDatabaseUsers = "CREATE TABLE ${UsersModel.TABLE_NAME} (" +
+
+        //Create table users
+        val createTableUsers = "CREATE TABLE [IF NOT EXISTS] ${UsersModel.TABLE_NAME} (" +
                 "${UsersModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "${UsersModel.USERNAME} VARCHAR(255)," +
                 "${UsersModel.PASSWORD} VARCHAR(255)," +
                 "${UsersModel.NAME} VARCHAR(255)," +
                 "${UsersModel.TYPE} VARCHAR(255)" +
                 ")"
+        db?.execSQL(createTableUsers)
 
-        db?.execSQL(createDatabaseUsers)
+        //Create table products
+        val createTableProducts = "CREATE TABLE [IF NOT EXISTS] ${ProductsModel.TABLE_NAME} (" +
+                "${ProductsModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "${ProductsModel.NAME} VARCHAR(255)," +
+                "${ProductsModel.CATEGORY} VARCHAR(255)," +
+                "${ProductsModel.PRICE} INTEGER (11)" +
+                ")"
+        db?.execSQL(createTableProducts)
+
+        //Create table category
+        val createTableCategory = "CREATE TABLE [IF NOT EXISTS] ${CategoriesModel.TABLE_NAME} (" +
+                "${CategoriesModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "${CategoriesModel.NAME} VARCHAR(255)" +
+                ")"
+        db?.execSQL(createTableCategory)
 
         var cv = ContentValues()
         cv.put(UsersModel.USERNAME, "admin")
