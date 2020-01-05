@@ -6,6 +6,6 @@ class ProductsModel{
         const val ID : String = "id"
         const val NAME : String = "name"
         const val CATEGORY : String = "category"
-        const val PRICE : Int = 0
+        const val PRICE : String = "price"
     }
 }

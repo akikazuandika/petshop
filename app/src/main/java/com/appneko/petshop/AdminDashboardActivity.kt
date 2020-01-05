@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_admin_dashboard.*
 
 class AdminDashboardActivity : AppCompatActivity() {
 
@@ -29,5 +30,9 @@ class AdminDashboardActivity : AppCompatActivity() {
             finish()
         }
 
+        adminDashboard_btn_to_category.setOnClickListener {
+            var intent = Intent(this, CategoriesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

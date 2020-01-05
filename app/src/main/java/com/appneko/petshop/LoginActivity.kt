@@ -14,6 +14,21 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val sharedPreference =  getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val username = sharedPreference.getString("username", null)
+        val type = sharedPreference.getString("type", null)
+        if (username != null){
+            if (type == "user"){
+                val intent = Intent(this, UserDashboardActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else if(type == "admin"){
+                val intent = Intent(this, AdminDashboardActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
         login_btn_login.setOnClickListener {
 
             val username = login_inp_username.text.toString()

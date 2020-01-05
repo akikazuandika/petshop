@@ -12,7 +12,7 @@ class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", nul
     override fun onCreate(db: SQLiteDatabase?) {
 
         //Create table users
-        val createTableUsers = "CREATE TABLE [IF NOT EXISTS] ${UsersModel.TABLE_NAME} (" +
+        val createTableUsers = "CREATE TABLE ${UsersModel.TABLE_NAME} (" +
                 "${UsersModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "${UsersModel.USERNAME} VARCHAR(255)," +
                 "${UsersModel.PASSWORD} VARCHAR(255)," +
@@ -22,7 +22,7 @@ class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", nul
         db?.execSQL(createTableUsers)
 
         //Create table products
-        val createTableProducts = "CREATE TABLE [IF NOT EXISTS] ${ProductsModel.TABLE_NAME} (" +
+        val createTableProducts = "CREATE TABLE ${ProductsModel.TABLE_NAME} (" +
                 "${ProductsModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "${ProductsModel.NAME} VARCHAR(255)," +
                 "${ProductsModel.CATEGORY} VARCHAR(255)," +
@@ -31,7 +31,7 @@ class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", nul
         db?.execSQL(createTableProducts)
 
         //Create table category
-        val createTableCategory = "CREATE TABLE [IF NOT EXISTS] ${CategoriesModel.TABLE_NAME} (" +
+        val createTableCategory = "CREATE TABLE ${CategoriesModel.TABLE_NAME} (" +
                 "${CategoriesModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "${CategoriesModel.NAME} VARCHAR(255)" +
                 ")"
