@@ -1,6 +1,7 @@
 package com.appneko.petshop
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.database.Cursor
 import android.view.LayoutInflater
@@ -42,6 +43,15 @@ class ProductsAdapter(private val products : ArrayList<Products>) : RecyclerView
             }else{
                 Toast.makeText(context, "Gagal", Toast.LENGTH_LONG).show()
             }
+        }
+
+        holder.btnEdit.setOnClickListener {
+            val intent = Intent(context, EditProductActivity::class.java)
+            intent.putExtra("id", product.id.toString())
+            intent.putExtra("name", product.name)
+            intent.putExtra("category", product.category)
+            intent.putExtra("price", product.price.toString())
+            context.startActivity(intent)
         }
     }
 
