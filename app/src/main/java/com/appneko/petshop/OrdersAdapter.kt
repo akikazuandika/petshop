@@ -26,6 +26,15 @@ class OrdersAdapter(private val orders : ArrayList<Orders>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val order = orders[position]
 
+        var status = ""
+        if (order.status == "1"){
+            status = "Disetujui"
+        }else if(order.status == "2"){
+            status = "Ditolak"
+        }else{
+            status = "Menunggu"
+        }
+
         holder.id.text = "ID : #" + order.id.toString()
         holder.name.text = "Nama Produk : " + order.productName
         holder.category.text = "Kategori Produk : " + order.productCategory
@@ -33,6 +42,7 @@ class OrdersAdapter(private val orders : ArrayList<Orders>) : RecyclerView.Adapt
         holder.amount.text = "Jumlah : " + order.amount.toString()
         holder.total.text = "Total : " + (order.price * order.amount).toString()
         holder.address.text = "Alamat Pengiriman : " + order.address
+        holder.status.text = "Status : " + status
 
     }
 
@@ -44,5 +54,6 @@ class OrdersAdapter(private val orders : ArrayList<Orders>) : RecyclerView.Adapt
         var amount : TextView = itemView.findViewById(R.id.item_order_amount)
         var total : TextView = itemView.findViewById(R.id.item_order_total)
         var address : TextView = itemView.findViewById(R.id.item_order_address)
+        var status : TextView = itemView.findViewById(R.id.item_order_status)
     }
 }

@@ -9,6 +9,7 @@ class OrdersModel{
         const val AMOUNT : String = "amount"
         const val PRICE : String = "price"
         const val ADDRESS : String = "address"
+        const val STATUS : String = "status"
         const val DATE : String = "createdAt"
     }
 }

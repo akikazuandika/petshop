@@ -12,15 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/adminDashboard_btn_to_category"
-        android:text="Category"
+        android:text="Categories"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/adminDashboard_btn_to_product"
-        android:text="Product"
+        android:text="Products"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminDashboard_btn_to_order"
+        android:text="Orders"
+        />
+
+
 
     <Button
         android:layout_width="match_parent"

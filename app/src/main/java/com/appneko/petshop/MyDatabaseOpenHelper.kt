@@ -46,6 +46,7 @@ class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", nul
                 "${OrdersModel.AMOUNT} INTEGER(11)," +
                 "${OrdersModel.PRICE} INTEGER(11)," +
                 "${OrdersModel.ADDRESS} VARCHAR(255)," +
+                "${OrdersModel.STATUS} VARCHAR(255) DEFAULT '0'," +
                 "${OrdersModel.DATE} VARCHAR(255)" +
                 ")"
         db?.execSQL(createTableOrder)
@@ -64,66 +65,3 @@ class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", nul
     }
 
 }
-
-//class MyDatabaseOpenHelper private constructor(ctx: Context) :
-//    ManagedSQLiteOpenHelper(ctx, "MyDatabase", null, 1) {
-//    init {
-//        instance = this
-//    }
-//
-//    companion object {
-//        private var instance: MyDatabaseOpenHelper? = null
-//
-//        @Synchronized
-//        fun getInstance(ctx: Context) : MyDatabaseOpenHelper{
-//            if (instance == null){
-//                instance = MyDatabaseOpenHelper(ctx.applicationContext)
-//            }
-//            return instance as MyDatabaseOpenHelper
-//        }
-//    }
-//
-//    override fun onCreate(db: SQLiteDatabase) {
-//        // Here you create tables
-//        db.createTable(
-//            "Users", true,
-//            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-//            "username" to TEXT,
-//            "password" to TEXT,
-//            "name" to TEXT
-//        )
-//
-//        db.createTable(
-//            "Category", true,
-//            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-//            "name" to TEXT
-//        )
-//
-//        db.createTable(
-//            "Products", true,
-//            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-//            "name" to TEXT,
-//            "category" to TEXT
-//        )
-//
-//        db.createTable(
-//            "Order", true,
-//            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-//            "username" to TEXT,
-//            "id_product" to TEXT,
-//            "date" to TEXT
-//        )
-//    }
-//
-//    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-//        // Here you can upgrade tables, as usual
-//        db.dropTable("Users", true)
-//        db.dropTable("Category", true)
-//        db.dropTable("Products", true)
-//        db.dropTable("Order", true)
-//    }
-//}
-//
-//// Access property for Context
-//val Context.database: MyDatabaseOpenHelper
-//    get() = MyDatabaseOpenHelper.getInstance(applicationContext)

@@ -77,6 +77,7 @@ class BuyActivity : AppCompatActivity() {
                     "${OrdersModel.PRICE}, " +
                     "${OrdersModel.AMOUNT}, " +
                     "${OrdersModel.ADDRESS}, " +
+                    "${OrdersModel.STATUS}, " +
                     "${OrdersModel.DATE}" +
                     ") " +
                     "VALUES('${productId}', " +
@@ -84,6 +85,7 @@ class BuyActivity : AppCompatActivity() {
                     "'${productPrice.toInt()}', " +
                     "'${buy_inp_amount.text.toString().toInt()}', " +
                     "'${buy_inp_address.text}', " +
+                    "'0', " +
                     "'${date}'" +
                     ") ", null)
 

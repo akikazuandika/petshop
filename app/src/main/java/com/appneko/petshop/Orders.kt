@@ -10,5 +10,6 @@ class Orders (){
     var price : Int = 0
     var address : String = ""
     var date : String = ""
+    var status : String = ""
 
 }
