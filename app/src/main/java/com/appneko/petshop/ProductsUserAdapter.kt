@@ -1,6 +1,7 @@
 package com.appneko.petshop
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.database.Cursor
 import android.view.LayoutInflater
@@ -29,9 +30,15 @@ class ProductsUserAdapter(private val products : ArrayList<Products>) : Recycler
         holder.name.text = "Nama : " + product.name
         holder.category.text = "Kategori : " + product.category
         holder.price.text = "Harga : " + product.price.toString()
+        var context = holder.itemView.context
 
         holder.btnBuy.setOnClickListener {
-
+            var intent = Intent(context, BuyActivity::class.java)
+            intent.putExtra("product_id", product.id.toString())
+            intent.putExtra("product_name", product.name)
+            intent.putExtra("product_category", product.category)
+            intent.putExtra("product_price", product.price.toString())
+            context.startActivity(intent)
         }
     }
 
