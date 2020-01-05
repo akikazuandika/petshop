@@ -26,13 +26,13 @@ class OrdersAdapter(private val orders : ArrayList<Orders>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val order = orders[position]
 
-        holder.id.text = order.id.toString()
-        holder.name.text = order.productName
-        holder.category.text = order.productCategory
-        holder.price.text = order.price.toString()
-        holder.amount.text = order.amount.toString()
-        holder.total.text = (order.price * order.amount).toString()
-        holder.address.text = "Alamatnay " + order.address
+        holder.id.text = "ID : #" + order.id.toString()
+        holder.name.text = "Nama Produk : " + order.productName
+        holder.category.text = "Kategori Produk : " + order.productCategory
+        holder.price.text = "Harga Produk : " + order.price.toString()
+        holder.amount.text = "Jumlah : " + order.amount.toString()
+        holder.total.text = "Total : " + (order.price * order.amount).toString()
+        holder.address.text = "Alamat Pengiriman : " + order.address
 
     }
 
