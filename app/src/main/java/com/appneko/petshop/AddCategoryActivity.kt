@@ -45,6 +45,7 @@ class AddCategoryActivity : AppCompatActivity() {
                 snackbar.show()
 
                 var intent = Intent(this@AddCategoryActivity, CategoriesActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
 
                 Timer("Done", false).schedule(1000){
                     startActivity(intent)

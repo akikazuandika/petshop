@@ -28,6 +28,7 @@ class CategoriesActivity : AppCompatActivity() {
 
         category_btn_add.setOnClickListener {
             val intent = Intent(this, AddCategoryActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
             finish()
         }

@@ -29,20 +29,16 @@ class CategoriesAdapter(private val categories : ArrayList<Categories>) : Recycl
         holder.btnDelete.setOnClickListener {
             val db = MyDatabaseOpenHelper(context).writableDatabase
 
-            var query = "DELETE FROM ${CategoriesModel.TABLE_NAME} WHERE id=${category.id}"
-            var result : Cursor = db.rawQuery(query, null)
-            var isDeleted : Boolean = result.count <= 0
-            if (isDeleted){
-                Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(context, "Gagal", Toast.LENGTH_LONG).show()
-            }
+            db.execSQL("DELETE FROM ${CategoriesModel.TABLE_NAME} WHERE id=${category.id}")
+            val intent = Intent(context, AdminDashboardActivity::class.java)
+            context.startActivity(intent)
         }
 
         holder.btnEdit.setOnClickListener {
             val intent = Intent(context, EditCategoryActivity::class.java)
             intent.putExtra("name", category.name)
             intent.putExtra("id", category.id.toString())
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             context.startActivity(intent)
         }
     }

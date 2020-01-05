@@ -35,14 +35,10 @@ class ProductsAdapter(private val products : ArrayList<Products>) : RecyclerView
         holder.btnDelete.setOnClickListener {
             val db = MyDatabaseOpenHelper(context).writableDatabase
 
-            var query = "DELETE FROM ${ProductsModel.TABLE_NAME} WHERE id=${product.id}"
-            var result : Cursor = db.rawQuery(query, null)
-            var isDeleted : Boolean = result.count <= 0
-            if (isDeleted){
-                Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(context, "Gagal", Toast.LENGTH_LONG).show()
-            }
+            db.execSQL("DELETE FROM ${ProductsModel.TABLE_NAME} WHERE id=${product.id}")
+            val intent = Intent(context, AdminDashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+            context.startActivity(intent)
         }
 
         holder.btnEdit.setOnClickListener {
@@ -51,6 +47,7 @@ class ProductsAdapter(private val products : ArrayList<Products>) : RecyclerView
             intent.putExtra("name", product.name)
             intent.putExtra("category", product.category)
             intent.putExtra("price", product.price.toString())
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             context.startActivity(intent)
         }
     }

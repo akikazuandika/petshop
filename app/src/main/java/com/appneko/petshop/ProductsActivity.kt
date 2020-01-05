@@ -35,6 +35,7 @@ class ProductsActivity : AppCompatActivity() {
 
         product_btn_to_add.setOnClickListener {
             val intent = Intent(this, AddProductActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
             finish()
         }
