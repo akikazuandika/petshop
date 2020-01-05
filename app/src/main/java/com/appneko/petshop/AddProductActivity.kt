@@ -1,12 +1,16 @@
 package com.appneko.petshop
 
+import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.appneko.petsho.CategoriesModel
 import com.appneko.petsho.ProductsModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_add_product.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,7 +44,6 @@ class AddProductActivity : AppCompatActivity() {
             var category = addProduct_spinner.selectedItem.toString()
 
             var result = db.rawQuery("SELECT * FROM ${CategoriesModel.TABLE_NAME} WHERE name='${category}'", null)
-
             if (result.moveToFirst()){
                 do {
                     categoryId = result.getString(0).toString()
@@ -48,15 +51,32 @@ class AddProductActivity : AppCompatActivity() {
             }
 
             val dbWritable = MyDatabaseOpenHelper(this).writableDatabase
-            var resultInsertProduct = dbWritable.rawQuery("INSERT INTO ${ProductsModel.TABLE_NAME}(name, category, price) VALUES('${name}', '${categoryId}', '${price}')", null)
-            if (resultInsertProduct.moveToFirst()){
-                if (resultInsertProduct.getString(0).toString() != "-1"){
-                    Toast.makeText(this, "Berhasil", Toast.LENGTH_LONG).show()
-                    Timer("Done", false).schedule(1000){
-                        finish()
-                    }
-                }else{
-                    Toast.makeText(this, "Gagal", Toast.LENGTH_LONG).show()
+
+            var cv = ContentValues()
+            cv.put(ProductsModel.NAME, name)
+            cv.put(ProductsModel.PRICE, price)
+            cv.put(ProductsModel.CATEGORY, categoryId)
+
+            var resultInsertProduct = dbWritable.insert(ProductsModel.TABLE_NAME, null, cv)
+
+            if (resultInsertProduct == (-1).toLong()){
+                val inputManager: InputMethodManager =getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.SHOW_FORCED)
+
+                var snackbar = Snackbar.make(it, "Failed", Snackbar.LENGTH_SHORT)
+                snackbar.show()
+            }else{
+                val inputManager: InputMethodManager =getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.SHOW_FORCED)
+
+                var snackbar = Snackbar.make(it, "Sucess", Snackbar.LENGTH_SHORT)
+                snackbar.show()
+
+                var intent = Intent(this@AddProductActivity, ProductsActivity::class.java)
+
+                Timer("Done", false).schedule(1000){
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
