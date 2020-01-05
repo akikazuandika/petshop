@@ -15,10 +15,14 @@ class UserDashboardActivity : AppCompatActivity() {
         val sharedPreference =  getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         val username = sharedPreference.getString("username", "username")
         val type = sharedPreference.getString("type", "type")
-        println("$username - $type")
 
         userDashboard_btn_to_product.setOnClickListener {
             var intent = Intent(this, ProductsActivity::class.java)
+            startActivity(intent)
+        }
+
+        userDashboard_btn_to_orders.setOnClickListener {
+            var intent = Intent(this, OrdersActivity::class.java)
             startActivity(intent)
         }
     }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.appneko.petsho.CategoriesModel
+import com.appneko.petsho.OrdersModel
 import com.appneko.petsho.ProductsModel
 import com.appneko.petsho.UsersModel
 
@@ -36,6 +37,18 @@ class MyDatabaseOpenHelper(ctx : Context) : SQLiteOpenHelper(ctx, "PetShop", nul
                 "${CategoriesModel.NAME} VARCHAR(255)" +
                 ")"
         db?.execSQL(createTableCategory)
+
+        //Create table category
+        val createTableOrder = "CREATE TABLE ${OrdersModel.TABLE_NAME} (" +
+                "${OrdersModel.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "${OrdersModel.ID_PRODUCT} VARCHAR(255)," +
+                "${OrdersModel.USERNAME} VARCHAR(255)," +
+                "${OrdersModel.AMOUNT} INTEGER(11)," +
+                "${OrdersModel.PRICE} INTEGER(11)," +
+                "${OrdersModel.ADDRESS} VARCHAR(255)," +
+                "${OrdersModel.DATE} VARCHAR(255)" +
+                ")"
+        db?.execSQL(createTableOrder)
 
         var cv = ContentValues()
         cv.put(UsersModel.USERNAME, "admin")

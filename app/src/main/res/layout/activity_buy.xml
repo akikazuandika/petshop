@@ -52,13 +52,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/buy_inp_address"
         android:hint="Alamat Pengiriman"
-
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/but_btn_buy"
+        android:id="@+id/buy_btn_buy"
         android:text="Beli"
         />
 
