@@ -34,12 +34,14 @@ class AdminDashboardActivity : AppCompatActivity() {
             var intent = Intent(this, CategoriesActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
+            finish()
         }
 
         adminDashboard_btn_to_product.setOnClickListener {
             var intent = Intent(this, ProductsActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
+            finish()
         }
 
         adminDashboard_btn_logout.setOnClickListener {

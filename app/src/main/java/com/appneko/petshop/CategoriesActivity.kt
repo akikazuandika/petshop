@@ -57,4 +57,15 @@ class CategoriesActivity : AppCompatActivity() {
         val listCategoryAdapter = CategoriesAdapter(list)
         rvCategories.adapter = listCategoryAdapter
     }
+
+    fun deleteCategory(context : Context, id : Int){
+        val db = MyDatabaseOpenHelper(context).writableDatabase
+
+        db.execSQL("DELETE FROM ${CategoriesModel.TABLE_NAME} WHERE id=${id}")
+        killActivity()
+    }
+
+    fun killActivity(){
+        finish()
+    }
 }
