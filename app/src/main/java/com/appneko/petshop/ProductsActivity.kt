@@ -43,7 +43,7 @@ class ProductsActivity : AppCompatActivity() {
     fun fetchData(ctx : Context){
         val db = MyDatabaseOpenHelper(ctx).readableDatabase
 
-        var query = "SELECT * FROM ${ProductsModel.TABLE_NAME}"
+        var query = "SELECT ${ProductsModel.TABLE_NAME}.*, ${CategoriesModel.TABLE_NAME}.${ProductsModel.NAME} as `categoryName` FROM ${ProductsModel.TABLE_NAME} JOIN ${CategoriesModel.TABLE_NAME} ON ${CategoriesModel.TABLE_NAME}.${CategoriesModel.ID} = ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}"
         var result = db.rawQuery(query, null)
 
         if (result.moveToFirst()){
@@ -51,7 +51,7 @@ class ProductsActivity : AppCompatActivity() {
                 var product = Products()
                 product.id = result.getString(0).toInt()
                 product.name = result.getString(1).toString()
-                product.category = result.getString(2).toString()
+                product.category = result.getString(4).toString()
                 product.price = result.getString(3).toInt()
                 list.add(product)
             }while (result.moveToNext())

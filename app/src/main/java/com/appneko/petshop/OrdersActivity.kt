@@ -24,7 +24,7 @@ class OrdersActivity : AppCompatActivity() {
     fun fetchData(ctx : Context){
         var db = MyDatabaseOpenHelper(ctx).readableDatabase
 
-        var result = db.rawQuery("SELECT ${OrdersModel.TABLE_NAME}.*, ${ProductsModel.TABLE_NAME}.${ProductsModel.NAME}, ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY} FROM ${OrdersModel.TABLE_NAME} JOIN ${ProductsModel.TABLE_NAME} ON ${ProductsModel.TABLE_NAME}.${ProductsModel.ID} = ${OrdersModel.TABLE_NAME}.${OrdersModel.ID_PRODUCT}", null)
+        var result = db.rawQuery("SELECT ${OrdersModel.TABLE_NAME}.*, ${ProductsModel.TABLE_NAME}.${ProductsModel.NAME}, ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}, ${CategoriesModel.TABLE_NAME}.${CategoriesModel.NAME} as `categoryName` FROM ${OrdersModel.TABLE_NAME} JOIN ${ProductsModel.TABLE_NAME} ON ${ProductsModel.TABLE_NAME}.${ProductsModel.ID} = ${OrdersModel.TABLE_NAME}.${OrdersModel.ID_PRODUCT} JOIN ${CategoriesModel.TABLE_NAME} ON ${CategoriesModel.TABLE_NAME}.${CategoriesModel.ID} = ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}", null)
         if (result.moveToFirst()){
             do {
                 var orders = Orders()
@@ -36,7 +36,7 @@ class OrdersActivity : AppCompatActivity() {
                 orders.address = result.getString(5).toString()
                 orders.date = result.getString(6).toString()
                 orders.productName = result.getString(7).toString()
-                orders.productCategory = result.getColumnIndex("${ProductsModel.CATEGORY}").toString()
+                orders.productCategory = result.getString(9).toString()
                 list.add(orders)
             }while (result.moveToNext())
         }
