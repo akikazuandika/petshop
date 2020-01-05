@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.appneko.petsho.OrdersModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_buy.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -71,7 +73,7 @@ class BuyActivity : AppCompatActivity() {
             var sdf = SimpleDateFormat("dd/M/yyyy HH:mm:ss")
             var date = sdf.format(Date())
 
-            var result = db.rawQuery("INSERT INTO ${OrdersModel.TABLE_NAME}" +
+            db.execSQL("INSERT INTO ${OrdersModel.TABLE_NAME}" +
                     "(${OrdersModel.ID_PRODUCT}, " +
                     "${OrdersModel.USERNAME}, " +
                     "${OrdersModel.PRICE}, " +
@@ -87,19 +89,17 @@ class BuyActivity : AppCompatActivity() {
                     "'${buy_inp_address.text}', " +
                     "'0', " +
                     "'${date}'" +
-                    ") ", null)
+                    ") ")
 
-            if (result.moveToFirst()){
-                if (result.getString(0).toString() != "-1"){
-                    Toast.makeText(this, "Berhasil", Toast.LENGTH_LONG).show()
-                    Timer("Done", false).schedule(1000){
-                        val intent = Intent(this@BuyActivity, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                }else{
-                    Toast.makeText(this, "Gagal", Toast.LENGTH_LONG).show()
-                }
+            val inputManager: InputMethodManager =getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.SHOW_FORCED)
+
+            Snackbar.make(it, "Pembelian Sukses", Snackbar.LENGTH_LONG).show()
+
+            Timer("Done", false).schedule(1000){
+                var intent = Intent(this@BuyActivity, OrdersActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }

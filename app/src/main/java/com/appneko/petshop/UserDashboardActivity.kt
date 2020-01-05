@@ -18,6 +18,7 @@ class UserDashboardActivity : AppCompatActivity() {
 
         userDashboard_btn_to_product.setOnClickListener {
             var intent = Intent(this, ProductsActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
         }
 

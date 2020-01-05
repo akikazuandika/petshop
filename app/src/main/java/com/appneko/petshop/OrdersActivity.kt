@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.appneko.petsho.CategoriesModel
 import com.appneko.petsho.OrdersModel
 import com.appneko.petsho.ProductsModel
+import com.appneko.petsho.UsersModel
 import com.google.android.material.snackbar.Snackbar
 
 class OrdersActivity : AppCompatActivity() {
@@ -29,10 +30,10 @@ class OrdersActivity : AppCompatActivity() {
 
     fun fetchData(ctx : Context, type: String, username: String?){
         var db = MyDatabaseOpenHelper(ctx).readableDatabase
-        var query = "SELECT ${OrdersModel.TABLE_NAME}.*, ${ProductsModel.TABLE_NAME}.${ProductsModel.NAME}, ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}, ${CategoriesModel.TABLE_NAME}.${CategoriesModel.NAME} as `categoryName` FROM ${OrdersModel.TABLE_NAME} JOIN ${ProductsModel.TABLE_NAME} ON ${ProductsModel.TABLE_NAME}.${ProductsModel.ID} = ${OrdersModel.TABLE_NAME}.${OrdersModel.ID_PRODUCT} JOIN ${CategoriesModel.TABLE_NAME} ON ${CategoriesModel.TABLE_NAME}.${CategoriesModel.ID} = ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY} ORDER BY ${OrdersModel.ID} DESC"
+        var query = "SELECT ${OrdersModel.TABLE_NAME}.*, ${ProductsModel.TABLE_NAME}.${ProductsModel.NAME}, ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}, ${CategoriesModel.TABLE_NAME}.${CategoriesModel.NAME} as `categoryName`, ${OrdersModel.TABLE_NAME}.${OrdersModel.USERNAME} as `usernameBuy` FROM ${OrdersModel.TABLE_NAME} JOIN ${ProductsModel.TABLE_NAME} ON ${ProductsModel.TABLE_NAME}.${ProductsModel.ID} = ${OrdersModel.TABLE_NAME}.${OrdersModel.ID_PRODUCT} JOIN ${CategoriesModel.TABLE_NAME} ON ${CategoriesModel.TABLE_NAME}.${CategoriesModel.ID} = ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY} ORDER BY ${OrdersModel.ID} DESC"
 
         if (type == "user"){
-            query = "SELECT ${OrdersModel.TABLE_NAME}.*, ${ProductsModel.TABLE_NAME}.${ProductsModel.NAME}, ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}, ${CategoriesModel.TABLE_NAME}.${CategoriesModel.NAME} as `categoryName` FROM ${OrdersModel.TABLE_NAME} JOIN ${ProductsModel.TABLE_NAME} ON ${ProductsModel.TABLE_NAME}.${ProductsModel.ID} = ${OrdersModel.TABLE_NAME}.${OrdersModel.ID_PRODUCT} JOIN ${CategoriesModel.TABLE_NAME} ON ${CategoriesModel.TABLE_NAME}.${CategoriesModel.ID} = ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY} WHERE ${OrdersModel.USERNAME}='${username}' ORDER BY ${OrdersModel.ID} DESC"
+            query = "SELECT ${OrdersModel.TABLE_NAME}.*, ${ProductsModel.TABLE_NAME}.${ProductsModel.NAME}, ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY}, ${CategoriesModel.TABLE_NAME}.${CategoriesModel.NAME} as `categoryName`, ${OrdersModel.TABLE_NAME}.${OrdersModel.USERNAME} as `usernameBuy` FROM ${OrdersModel.TABLE_NAME} JOIN ${ProductsModel.TABLE_NAME} ON ${ProductsModel.TABLE_NAME}.${ProductsModel.ID} = ${OrdersModel.TABLE_NAME}.${OrdersModel.ID_PRODUCT} JOIN ${CategoriesModel.TABLE_NAME} ON ${CategoriesModel.TABLE_NAME}.${CategoriesModel.ID} = ${ProductsModel.TABLE_NAME}.${ProductsModel.CATEGORY} WHERE ${OrdersModel.USERNAME}='${username}' ORDER BY ${OrdersModel.ID} DESC"
         }
 
         var result = db.rawQuery(query, null)
@@ -41,7 +42,7 @@ class OrdersActivity : AppCompatActivity() {
                 var orders = Orders()
                 orders.id = result.getString(0).toString().toInt()
                 orders.idProduct = result.getString(2).toString()
-                orders.username = result.getString(1).toString()
+                orders.username = result.getString(11).toString()
                 orders.amount = result.getString(3).toString().toInt()
                 orders.price = result.getString(4).toString().toInt()
                 orders.address = result.getString(5).toString()
