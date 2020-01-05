@@ -1,5 +1,6 @@
 package com.appneko.petshop
 
+import android.content.Intent
 import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,7 @@ class CategoriesAdapter(private val categories : ArrayList<Categories>) : Recycl
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         val category = categories[position]
-        holder.name.text = category.name
+        holder.name.text = "Nama : " + category.name
         var context = holder.itemView.context
 
         holder.btnDelete.setOnClickListener {
@@ -36,6 +37,13 @@ class CategoriesAdapter(private val categories : ArrayList<Categories>) : Recycl
             }else{
                 Toast.makeText(context, "Gagal", Toast.LENGTH_LONG).show()
             }
+        }
+
+        holder.btnEdit.setOnClickListener {
+            val intent = Intent(context, EditCategoryActivity::class.java)
+            intent.putExtra("name", category.name)
+            intent.putExtra("id", category.id.toString())
+            context.startActivity(intent)
         }
     }
 
