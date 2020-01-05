@@ -1,8 +1,10 @@
 package com.appneko.petshop
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_user_dashboard.*
 
 class UserDashboardActivity : AppCompatActivity() {
 
@@ -14,5 +16,10 @@ class UserDashboardActivity : AppCompatActivity() {
         val username = sharedPreference.getString("username", "username")
         val type = sharedPreference.getString("type", "type")
         println("$username - $type")
+
+        userDashboard_btn_to_product.setOnClickListener {
+            var intent = Intent(this, ProductsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

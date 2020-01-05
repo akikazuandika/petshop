@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginHorizontal="20dp"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <EditText
-        android:layout_marginTop="200dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/register_inp_name"
+        android:hint="Name"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_inp_username"
         android:hint="Username"
-        android:id="@+id/login_inp_username"
         />
 
     <EditText
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/register_inp_password"
         android:hint="Password"
-        android:id="@+id/login_inp_password"
-        />
-
-    <Button
-        android:layout_marginTop="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_btn_login"
-        android:text="Login"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_btn_to_register"
+        android:id="@+id/register_btn_register"
         android:text="Daftar"
         />
+
 
 </LinearLayout>

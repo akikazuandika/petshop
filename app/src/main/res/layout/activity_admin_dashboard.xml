@@ -22,6 +22,11 @@
         android:text="Product"
         />
 
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminDashboard_btn_logout"
+        android:text="Logout"
+        />
 
 </LinearLayout>

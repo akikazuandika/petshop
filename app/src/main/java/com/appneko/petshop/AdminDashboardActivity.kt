@@ -39,5 +39,14 @@ class AdminDashboardActivity : AppCompatActivity() {
             var intent = Intent(this, ProductsActivity::class.java)
             startActivity(intent)
         }
+
+        adminDashboard_btn_logout.setOnClickListener {
+            var editor = sharedPreference.edit()
+            editor.clear()
+            editor.commit()
+            var intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

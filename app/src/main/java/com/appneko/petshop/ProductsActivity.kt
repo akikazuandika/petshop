@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.appneko.petsho.CategoriesModel
@@ -21,8 +23,15 @@ class ProductsActivity : AppCompatActivity() {
         rvProducts = findViewById(R.id.rv_products)
         rvProducts.setHasFixedSize(true)
 
+        val sharedPreference =  getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val type = sharedPreference.getString("type", null)
+
+        if (type != "admin"){
+            product_btn_to_add.visibility = View.GONE
+        }
+
         fetchData(this)
-        refreshList(this)
+        refreshList(this, type.toString())
 
         product_btn_to_add.setOnClickListener {
             val intent = Intent(this, AddProductActivity::class.java)
@@ -49,11 +58,17 @@ class ProductsActivity : AppCompatActivity() {
         }
     }
 
-    fun refreshList(ctx: Context){
+    fun refreshList(ctx: Context, type : String){
         rvProducts = findViewById(R.id.rv_products)
         rvProducts.setHasFixedSize(true)
         rvProducts.layoutManager = LinearLayoutManager(ctx)
-        val listCategoryAdapter = ProductsAdapter(list)
-        rvProducts.adapter = listCategoryAdapter
+        if (type == "admin"){
+            var listCategoryAdapter = ProductsAdapter(list)
+            rvProducts.adapter = listCategoryAdapter
+        }else{
+            var listCategoryAdapter = ProductsUserAdapter(list)
+            rvProducts.adapter = listCategoryAdapter
+        }
+
     }
 }

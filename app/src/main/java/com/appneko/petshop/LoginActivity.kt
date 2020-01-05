@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.appneko.petsho.UsersModel
 import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.db.select
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,6 +26,11 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        }
+
+        login_btn_to_register.setOnClickListener {
+            var intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         login_btn_login.setOnClickListener {
