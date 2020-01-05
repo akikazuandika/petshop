@@ -34,5 +34,10 @@ class AdminDashboardActivity : AppCompatActivity() {
             var intent = Intent(this, CategoriesActivity::class.java)
             startActivity(intent)
         }
+
+        adminDashboard_btn_to_product.setOnClickListener {
+            var intent = Intent(this, ProductsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

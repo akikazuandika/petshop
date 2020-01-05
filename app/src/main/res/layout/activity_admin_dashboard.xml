@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AdminDashboardActivity">
 
     <Button
@@ -13,5 +14,14 @@
         android:id="@+id/adminDashboard_btn_to_category"
         android:text="Category"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminDashboard_btn_to_product"
+        android:text="Product"
+        />
+
+
 
 </LinearLayout>
