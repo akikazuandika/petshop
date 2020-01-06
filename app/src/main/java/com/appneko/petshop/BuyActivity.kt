@@ -30,19 +30,19 @@ class BuyActivity : AppCompatActivity() {
         val username = sharedPreference.getString("username", "username")
 
 
-        buy_product_name.text = "Nama Produk : $productName"
-        buy_product_category.text = "Kategori Produk : $productCategory"
-        buy_product_price.text = "Harga Produk : $productPrice"
-        buy_product_total.text = "Total : $productPrice"
+        buy_product_name.text = productName
+        buy_product_category.text = productCategory
+        buy_product_price.text = productPrice
+        buy_product_total.text = productPrice
 
         buy_inp_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 var amount = 1
                 if (buy_inp_amount.text.isNotEmpty()){
-                    buy_product_show_amount.text = "Jumlah : " + buy_inp_amount.text.toString()
+                    buy_product_show_amount.text =buy_inp_amount.text.toString()
                     amount = buy_inp_amount.text.toString().toInt()
                 }
-                buy_product_total.text = "Total : " + (productPrice.toInt() * amount).toString()
+                buy_product_total.text =(productPrice.toInt() * amount).toString()
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -52,10 +52,10 @@ class BuyActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 var amount = 1
                 if (buy_inp_amount.text.isNotEmpty()){
-                    buy_product_show_amount.text = "Jumlah : " + buy_inp_amount.text.toString()
+                    buy_product_show_amount.text =buy_inp_amount.text.toString()
                     amount = buy_inp_amount.text.toString().toInt()
                 }
-                buy_product_total.text = "Total : " + (productPrice.toInt() * amount).toString()
+                buy_product_total.text =(productPrice.toInt() * amount).toString()
             }
         })
 

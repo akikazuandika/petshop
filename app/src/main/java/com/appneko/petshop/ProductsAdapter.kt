@@ -27,9 +27,9 @@ class ProductsAdapter(private val products : ArrayList<Products>) : RecyclerView
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val product = products[position]
-        holder.name.text = "Nama : " + product.name
-        holder.category.text = "Kategori : " + product.category
-        holder.price.text = "Harga : " + product.price.toString()
+        holder.name.text = product.name
+        holder.category.text = product.category
+        holder.price.text = product.price.toString()
         var context = holder.itemView.context
 
         holder.btnDelete.setOnClickListener {

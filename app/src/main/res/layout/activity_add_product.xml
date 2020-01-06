@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginHorizontal="10dp"
     tools:context=".AddProductActivity">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        />
 
     <EditText
         android:layout_width="match_parent"
@@ -14,6 +22,12 @@
         android:id="@+id/addProduct_inp_name"
         />
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Harga"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,16 +36,23 @@
         android:id="@+id/addProduct_inp_price"
         />
 
-    <Spinner
+    <TextView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Kategori"
+        />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:id="@+id/addProduct_spinner"
         />
 
     <Button
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add"
+        android:layout_height="50dp"
+        android:text="Tambah"
         android:id="@+id/addProduct_btn_add"
         />
 

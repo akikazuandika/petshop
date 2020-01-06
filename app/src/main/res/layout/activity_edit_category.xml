@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginHorizontal="20dp"
     tools:context=".EditCategoryActivity">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        />
 
     <EditText
         android:layout_width="match_parent"
@@ -15,8 +23,9 @@
         />
 
     <Button
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Edit"
         android:id="@+id/editCategory_btn_edit"
         />

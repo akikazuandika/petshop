@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditProductActivity"></activity>
-        <activity android:name=".EditCategoryActivity" />
-        <activity android:name=".OrdersActivity" />
+        <activity android:name=".EditProductActivity" android:label="Edit Produk"/>
+        <activity android:name=".EditCategoryActivity" android:label="Edit Kategori"/>
+        <activity android:name=".OrdersActivity" android:label="Daftar Pesanan"/>
         <activity android:name=".BuyActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AddProductActivity" />
-        <activity android:name=".ProductsActivity" />
-        <activity android:name=".AddCategoryActivity" />
-        <activity android:name=".CategoriesActivity" />
+        <activity android:name=".RegisterActivity" android:label="Daftar PetShop"/>
+        <activity android:name=".AddProductActivity" android:label="Tambah Produk"/>
+        <activity android:name=".ProductsActivity" android:label="Daftar Produk"/>
+        <activity android:name=".AddCategoryActivity" android:label="Tambah Kategori" />
+        <activity android:name=".CategoriesActivity" android:label="Daftar Kategori"/>
         <activity android:name=".UserDashboardActivity" />
         <activity android:name=".AdminDashboardActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" android:label="Masuk Pethsop"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
